@@ -1,15 +1,26 @@
 var express = require('express'), http = require('http');
-var cors = require('cors');
+// var cors = require('cors');
+const { createProxyMiddleware } = require('http-proxy-middleware');
 var static = require('serve-static');
 var app = express();
 
 app.set('port', process.env.PORT || 8080);
-// app.set('host', '127.0.0.1'); // 로컬 개발 환경에서는 host 설정을 주석 처리 또는 제거
-
+app.set('host', '127.0.0.1'); // 로컬 개발 환경에서는 host 설정을 주석 처리 또는 제거
 
 app.use(static(__dirname));
-app.use(cors());
 
-http.createServer(app).listen(app.get('port'),app.get('host'),()=>{
-    console.log('Express server running at'+app.get('port')+app.get('host'));
+// Define the proxy route and target
+const naverMapsProxy = createProxyMiddleware('/naver-maps-api', {
+    target: 'https://naveropenapi.apigw.ntruss.com',
+    changeOrigin: true, // This ensures that the "Host" header is properly set
+    pathRewrite: {
+      '^/naver-maps-api': '', // Remove the "/naver-maps-api" path prefix
+    },
+  });
+
+// Use the proxy middleware
+app.use(naverMapsProxy);
+
+http.createServer(app).listen(app.get('port'), app.get('host'), () => {
+    console.log('Express server running at ' + app.get('port') + ' ' + app.get('host'));
 });
