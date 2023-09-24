@@ -17,7 +17,7 @@ const naverMapsProxy = createProxyMiddleware('/naver-maps-api', {
       '^/naver-maps-api': '', // Remove the "/naver-maps-api" path prefix
     },
   });
-  
+
 // Use the proxy middleware
 app.use(naverMapsProxy);
 
