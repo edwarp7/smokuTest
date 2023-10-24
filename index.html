@@ -18,48 +18,67 @@ var map = new naver.maps.Map('map', {
 
 // 기숙사 흡연장
 var marker = new naver.maps.Marker({
-    position: new naver.maps.LatLng(37.539314, 127.078426),
+    position: new naver.maps.LatLng(37.539278, 127.076841),
     map: map
 });
 
-// 도서관 옆 흡연장
-var marker1 = new naver.maps.Marker({
-    position: new naver.maps.LatLng(37.542006, 127.074458),
-    map: map
-});
 
-// 요청 URL 수정
-var url = "/naver-maps-api/map-direction/v1/driving?start=37.359708,127.1058342&goal=35.179470,129.075986&option=trafast";
+var latitude1;
+var longitude1;
 
-// 요청 헤더
-var headers = new Headers();
-headers.set("X-NCP-APIGW-API-KEY-ID", "kzfwh7kw4c"); // 애플리케이션 등록 시 발급받은 client id 값
-headers.set("X-NCP-APIGW-API-KEY", "7kG78fhb682p372iIlm7I4L73aPaTYQVlPlqNzXf"); // 애플리케이션 등록 시 발급받은 client secret 값
+navigator.geolocation.getCurrentPosition(function(pos) {
+    latitude1 = pos.coords.latitude;
+    longitude1 = pos.coords.longitude;
 
-// HTTP 요청 설정
-var requestOptions = {
-    method: 'GET',
-    headers: headers,
-    redirect: 'follow'
-};
-
-// HTTP 요청 보내기
-fetch(url, requestOptions)
-    .then(response => {
-        // response.ok가 아닌 response.status를 사용
-        if (response.status !== 200) {
-            throw new Error('API 오류: ' + response.status);
-        }
-        return response.json();
-    })
-    .then(result => {
-        // API 응답(result)을 여기서 처리
-        console.log(result);
-    })
-    .catch(error => {
-        // 오류 처리
-        console.error('API 요청 중 오류 발생:', error);
+    console.log("마커 출력전");
+    // 도서관 옆 흡연장
+    var marker1 = new naver.maps.Marker({
+        position: new naver.maps.LatLng(latitude1, longitude1),
+        map: map
     });
+
+    console.log("마커 출력후");
+    // 요청 URL 수정
+    var url = "/naver-maps-api/map-direction/v1/driving?start="+longitude1+","+latitude1+"&goal=127.079100,37.541436&option=trafast";
+
+    console.log(url);
+
+    // 요청 헤더
+    var headers = new Headers();
+    headers.set("X-NCP-APIGW-API-KEY-ID", "kzfwh7kw4c"); // 애플리케이션 등록 시 발급받은 client id 값
+    headers.set("X-NCP-APIGW-API-KEY", "7kG78fhb682p372iIlm7I4L73aPaTYQVlPlqNzXf"); // 애플리케이션 등록 시 발급받은 client secret 값
+
+    // HTTP 요청 설정
+    var requestOptions = {
+      method: 'GET',
+      headers: headers,
+      redirect: 'follow'
+    };
+
+    // HTTP 요청 보내기
+    fetch(url, requestOptions)
+     .then(response => {
+            // response.ok가 아닌 response.status를 사용
+            if (response.status !== 200) {
+                throw new Error('API 오류: ' + response.status);
+         }
+            return response.json();
+        })
+     .then(result => {
+            // API 응답(result)을 여기서 처리
+            console.log(result);
+     })
+     .catch(error => {
+            // 오류 처리
+            console.error('API 요청 중 오류 발생:', error);
+    });
+});
+
+console.log(latitude1);
+console.log("latitude");
+
+
+
 
 </script>
 </body>
