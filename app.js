@@ -5,7 +5,7 @@ const { dirname } = require('path');
 var static = require('serve-static');
 var app = express();
 
-app.set('port', process.env.PORT || 80);
+app.set('port', process.env.PORT || 8080);
 app.set('host', '0.0.0.0'); // 로컬 개발 환경에서는 host 설정을 주석 처리 또는 제거
 
 app.use(static(__dirname));
