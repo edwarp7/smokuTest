@@ -4,82 +4,543 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
-    <title>간단한 지도 표시하기</title>
-    <script type="text/javascript" src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=kzfwh7kw4c"></script>
+    <title>SMOKU</title>
+    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=kzfwh7kw4c"></script>
+    <style>
+        #map {
+            position: relative;
+        }
+        #btn1 {
+            width: 360px;
+            height: 240px;
+            background-color: #0078FF;
+            color: #fff;
+            text-align: center;
+            line-height: 240px;
+            cursor: pointer;
+            position: absolute;
+            display: none;
+        }
+    </style>
 </head>
 <body>
-<div id="map" style="width:100%;height:700px;"></div>
+    <div id="map" style="width:100%; height:800px;">
+        <div id="btn1">마커 클릭</div>
+    </div>
+    <script>
+        window.onload = function() {
 
-<script>
-var map = new naver.maps.Map('map', {
-    center: new naver.maps.LatLng(37.539314, 127.078426),
-    zoom: 15
-});
+            // 1. 기숙사 프론티어      (37.539314, 127.078426)
+            // 2. 기술혁신관 주차장     (37.539734, 127.077744)
+            // 3. 산협협동관 주차장     (37.539324, 127.073454)
+            // 4. 도서관             (37.542006, 127.074458)
+            // 5. 예디대1             (37.542586, 127.072790)
+            // 6. 문과대 뒤           (37.543091, 127.078600)
+            // 7. 이과대 옆           (37.541781, 127.080444)
+            // 8. 황소상 옆           (37.542749, 127.076197)
+            // 9. 공학관             (37.541490, 127.078981)
+            // 10. 신공학관           (37.540503, 127.079287)
+            // 11. 행정관 뒤          (37.543604, 127.074972)
+            // 12. 상허관             (37.543822, 127.075768)
+            // 13. 법학관            (37.541563, 127.075599)
+            // 14. 새천년관           (37.543295, 127.077583)
+            // 15. 체육관             (37.544699, 127.079416)
 
-// 기숙사 흡연장
-var marker = new naver.maps.Marker({
-    position: new naver.maps.LatLng(37.539278, 127.076841),
-    map: map
-});
+            // 황소상까지만
+            var arrLa = [37.539314, 37.539734, 37.539324, 37.542006, 37.542586, 37.543091, 37.541781, 37.542749, 37.541490, 37.540503, 37.543604, 37.543822, 37.541563, 37.543295, 37.544699];
+            var arrLo = [127.078426,127.077744,127.073454,127.074458,127.072790,127.078600,127.080444,127.076197,127.078981,127.079287,127.074972,127.075768,127.075599,127.077583,127.079416];
 
+            var myMap;
+            var polyline;
 
-var latitude1;
-var longitude1;
+            var watchID;
 
-navigator.geolocation.getCurrentPosition(function(pos) {
-    latitude1 = pos.coords.latitude;
-    longitude1 = pos.coords.longitude;
+            var btn1 = document.getElementById("btn1");
 
-    console.log("마커 출력전");
-    // 도서관 옆 흡연장
-    var marker1 = new naver.maps.Marker({
-        position: new naver.maps.LatLng(latitude1, longitude1),
-        map: map
-    });
+            // 현재 위치 불러와서 지도 생성
+            navigator.geolocation.getCurrentPosition(function(pos) {
+                var latitude = pos.coords.latitude;     // 현재 위도                
+                var longitude = pos.coords.longitude;   // 현재 경도
+                loadMap(latitude, longitude);
+                //loadDirection(latitude, longitude, arrLa[0], arrLo[0]);
+            });
+            
+            // 위치 업데이트 함수
+            function updateLocation(pos) {
+                var latitude = pos.coords.latitude;
+                var longitude = pos.coords.longitude;
+                myMap.setCenter(new naver.maps.LatLng(latitude, longitude));
+                // if (polyline) {
+                //     polyline.setMap(null);
+                // }
+                //loadDirection(latitude, longitude, markers[0].getPosition().lat(), markers[0].getPosition().lng());
+            }
 
-    console.log("마커 출력후");
-    // 요청 URL 수정
-    var url = "/naver-maps-api/map-direction/v1/driving?start="+longitude1+","+latitude1+"&goal=127.079100,37.541436&option=trafast";
+            // 지도 생성 함수
+            function loadMap(latitude, longitude) {
 
-    console.log(url);
+                let markers = new Array();
 
-    // 요청 헤더
-    var headers = new Headers();
-    headers.set("X-NCP-APIGW-API-KEY-ID", "kzfwh7kw4c"); // 애플리케이션 등록 시 발급받은 client id 값
-    headers.set("X-NCP-APIGW-API-KEY", "7kG78fhb682p372iIlm7I4L73aPaTYQVlPlqNzXf"); // 애플리케이션 등록 시 발급받은 client secret 값
+                // 네이버 지도 객체
+                myMap = new naver.maps.Map('map', {
+                    center: new naver.maps.LatLng(latitude, longitude), // 현재 위치로 중심 좌표 설정
+                    zoom: 16, // 확대 레벨 설정
+                });
 
-    // HTTP 요청 설정
-    var requestOptions = {
-      method: 'GET',
-      headers: headers,
-      redirect: 'follow'
-    };
+                // 현재 위치 마커
+                var myMarker = new naver.maps.Marker({
+                    position: new naver.maps.LatLng(latitude, longitude),
+                    map: myMap,
+                    icon: {
+                        url : "/image_ui/icon_Bullseye.png"
+                    },
+                });
 
-    // HTTP 요청 보내기
-    fetch(url, requestOptions)
-     .then(response => {
-            // response.ok가 아닌 response.status를 사용
-            if (response.status !== 200) {
-                throw new Error('API 오류: ' + response.status);
-         }
-            return response.json();
-        })
-     .then(result => {
-            // API 응답(result)을 여기서 처리
-            console.log(result);
-     })
-     .catch(error => {
-            // 오류 처리
-            console.error('API 요청 중 오류 발생:', error);
-    });
-});
+                // 1. 기숙사 마커
+                var marker1 = new naver.maps.Marker({
+                    position: new naver.maps.LatLng(arrLa[0], arrLo[0]),
+                    map: myMap,
+                    icon: {
+                        url : "/image_ui/icon_Joint_2.png"
+                    },
+                });
+                // 기숙사 마커 클릭
+                naver.maps.Event.addListener(marker1, "click", function() {
+                    loadDirection(latitude, longitude, arrLa[0], arrLo[0]);
+                    for (var i=0 ; i<markers.length ; i++) {
+                        markers[i].setIcon({
+                            url : "/image_ui/icon_Joint_2.png"
+                        });
+                    }
+                    marker1.setIcon({
+                        url : "/image_ui/icon_Joint_1.png"
+                    });
+                });
+                // 기숙사 마커 추가
+                markers.push(marker1);
 
-console.log(latitude1);
-console.log("latitude");
+                // 2. 기술혁신관 주차장 마커
+                var marker2 = new naver.maps.Marker({
+                    position: new naver.maps.LatLng(arrLa[1], arrLo[1]),
+                    map: myMap,
+                    icon: {
+                        url : "/image_ui/icon_Joint_2.png"
+                    },
+                });
+                // 기술혁신관 마커 클릭
+                naver.maps.Event.addListener(marker2, "click", function() {
+                    loadDirection(latitude, longitude, arrLa[1], arrLo[1]);
+                    for (var i=0 ; i<markers.length ; i++) {
+                        markers[i].setIcon({
+                            url : "/image_ui/icon_Joint_2.png"
+                        });
+                    }
+                    marker2.setIcon({
+                        url : "/image_ui/icon_Joint_1.png"
+                    });
+                });
+                // 기술혁신관 마커 추가
+                markers.push(marker2);
 
+                // 3. 산학협동관 주차장 마커
+                var marker3 = new naver.maps.Marker({
+                    position: new naver.maps.LatLng(arrLa[2], arrLo[2]),
+                    map: myMap,
+                    icon: {
+                        url : "/image_ui/icon_Joint_2.png"
+                    },
+                });
+                // 산협 마커 클릭
+                naver.maps.Event.addListener(marker3, "click", function() {
+                    loadDirection(latitude, longitude, arrLa[2], arrLo[2]);
+                    for (var i=0 ; i<markers.length ; i++) {
+                        markers[i].setIcon({
+                            url : "/image_ui/icon_Joint_2.png"
+                        });
+                    }
+                    marker3.setIcon({
+                        url : "/image_ui/icon_Joint_1.png"
+                    });
+                });
+                // 산협 마커 추가
+                markers.push(marker3);
 
+                // 4. 도서관 마커
+                var marker4 = new naver.maps.Marker({
+                    position: new naver.maps.LatLng(arrLa[3], arrLo[3]),
+                    map: myMap,
+                    icon: {
+                        url : "/image_ui/icon_Joint_2.png"
+                    },
+                });
+                // 도서관 마커 클릭
+                naver.maps.Event.addListener(marker4, "click", function() {
+                    loadDirection(latitude, longitude, arrLa[3], arrLo[3]);
+                    for (var i=0 ; i<markers.length ; i++) {
+                        markers[i].setIcon({
+                            url : "/image_ui/icon_Joint_2.png"
+                        });
+                    }
+                    marker4.setIcon({
+                        url : "/image_ui/icon_Joint_1.png"
+                    });
+                });
+                // 도서관 마커 추가
+                markers.push(marker4);
 
+                // 5. 예디대 마커
+                var marker5 = new naver.maps.Marker({
+                    position: new naver.maps.LatLng(arrLa[4], arrLo[4]),
+                    map: myMap,
+                    icon: {
+                        url : "/image_ui/icon_Joint_2.png"
+                    },
+                });
+                // 예디대 마커 클릭
+                naver.maps.Event.addListener(marker5, "click", function() {
+                    loadDirection(latitude, longitude, arrLa[4], arrLo[4]);
+                    for (var i=0 ; i<markers.length ; i++) {
+                        markers[i].setIcon({
+                            url : "/image_ui/icon_Joint_2.png"
+                        });
+                    }
+                    marker5.setIcon({
+                        url : "/image_ui/icon_Joint_1.png"
+                    });
+                });
+                // 예디대 마커 추가
+                markers.push(marker5);
 
-</script>
+                // 6. 문과대 뒤 마커
+                var marker6 = new naver.maps.Marker({
+                    position: new naver.maps.LatLng(arrLa[5], arrLo[5]),
+                    map: myMap,
+                    icon: {
+                        url : "/image_ui/icon_Joint_2.png"
+                    },
+                });
+                // 문과대 마커 클릭
+                naver.maps.Event.addListener(marker6, "click", function() {
+                    loadDirection(latitude, longitude, arrLa[5], arrLo[5]);
+                    for (var i=0 ; i<markers.length ; i++) {
+                        markers[i].setIcon({
+                            url : "/image_ui/icon_Joint_2.png"
+                        });
+                    }
+                    marker6.setIcon({
+                        url : "/image_ui/icon_Joint_1.png"
+                    });
+                });
+                // 문과대 마커 추가
+                markers.push(marker6);
+
+                // 7. 이과관 옆 마커
+                var marker7 = new naver.maps.Marker({
+                    position: new naver.maps.LatLng(arrLa[6], arrLo[6]),
+                    map: myMap,
+                    icon: {
+                        url : "/image_ui/icon_Joint_2.png"
+                    },
+                });
+                // 이과대 마커 클릭
+                naver.maps.Event.addListener(marker7, "click", function() {
+                    loadDirection(latitude, longitude, arrLa[6], arrLo[6]);
+                    for (var i=0 ; i<markers.length ; i++) {
+                        markers[i].setIcon({
+                            url : "/image_ui/icon_Joint_2.png"
+                        });
+                    }
+                    marker7.setIcon({
+                        url : "/image_ui/icon_Joint_1.png"
+                    });
+                });
+                // 이과대 마커 추가
+                markers.push(marker7);
+
+                // 8. 새천년관 학생회관 황소상 마커
+                var marker8 = new naver.maps.Marker({
+                    position: new naver.maps.LatLng(arrLa[7], arrLo[7]),
+                    map: myMap,
+                    icon: {
+                        url : "/image_ui/icon_Joint_2.png"
+                    },
+                });
+                // 황소상 마커 클릭
+                naver.maps.Event.addListener(marker8, "click", function() {
+                    loadDirection(latitude, longitude, arrLa[7], arrLo[7]);
+                    for (var i=0 ; i<markers.length ; i++) {
+                        markers[i].setIcon({
+                            url : "/image_ui/icon_Joint_2.png"
+                        });
+                    }
+                    marker8.setIcon({
+                        url : "/image_ui/icon_Joint_1.png"
+                    });
+                });
+                // 황소상 마커 추가
+                markers.push(marker8);
+
+                // 9. 공학관 마커
+                var marker9 = new naver.maps.Marker({
+                    position: new naver.maps.LatLng(arrLa[8], arrLo[8]),
+                    map: myMap,
+                    icon: {
+                        url : "/image_ui/icon_Joint_2.png"
+                    },
+                });
+                // 공학관 마커 클릭
+                naver.maps.Event.addListener(marker9, "click", function() {
+                    loadDirection(latitude, longitude, arrLa[8], arrLo[8]);
+                    for (var i=0 ; i<markers.length ; i++) {
+                        markers[i].setIcon({
+                            url : "/image_ui/icon_Joint_2.png"
+                        });
+                    }
+                    marker9.setIcon({
+                        url : "/image_ui/icon_Joint_1.png"
+                    });
+                });
+                // 공학관 마커 추가
+                markers.push(marker9);
+
+                // 10. 신공학관 마커
+                var marker10 = new naver.maps.Marker({
+                    position: new naver.maps.LatLng(arrLa[9], arrLo[9]),
+                    map: myMap,
+                    icon: {
+                        url : "/image_ui/icon_Joint_2.png"
+                    },
+                });
+                // 신공학관 마커 클릭
+                naver.maps.Event.addListener(marker10, "click", function() {
+                    loadDirection(latitude, longitude, arrLa[9], arrLo[9]);
+                    for (var i=0 ; i<markers.length ; i++) {
+                        markers[i].setIcon({
+                            url : "/image_ui/icon_Joint_2.png"
+                        });
+                    }
+                    marker10.setIcon({
+                        url : "/image_ui/icon_Joint_1.png"
+                    });
+                });
+                // 신공학관 마커 추가
+                markers.push(marker10);
+
+                // 11. 행정관 마커
+                var marker11 = new naver.maps.Marker({
+                    position: new naver.maps.LatLng(arrLa[10], arrLo[10]),
+                    map: myMap,
+                    icon: {
+                        url : "/image_ui/icon_Joint_2.png"
+                    },
+                });
+                // 행정관 마커 클릭
+                naver.maps.Event.addListener(marker11, "click", function() {
+                    loadDirection(latitude, longitude, arrLa[10], arrLo[10]);
+                    for (var i=0 ; i<markers.length ; i++) {
+                        markers[i].setIcon({
+                            url : "/image_ui/icon_Joint_2.png"
+                        });
+                    }
+                    marker11.setIcon({
+                        url : "/image_ui/icon_Joint_1.png"
+                    });
+                });
+                // 행정관 마커 추가
+                markers.push(marker11);
+
+                // 12. 상허관 마커
+                var marker12 = new naver.maps.Marker({
+                    position: new naver.maps.LatLng(arrLa[11], arrLo[11]),
+                    map: myMap,
+                    icon: {
+                        url : "/image_ui/icon_Joint_2.png"
+                    },
+                });
+                // 상허관 마커 클릭
+                naver.maps.Event.addListener(marker12, "click", function() {
+                    loadDirection(latitude, longitude, arrLa[11], arrLo[11]);
+                    for (var i=0 ; i<markers.length ; i++) {
+                        markers[i].setIcon({
+                            url : "/image_ui/icon_Joint_2.png"
+                        });
+                    }
+                    marker12.setIcon({
+                        url : "/image_ui/icon_Joint_1.png"
+                    });
+                });
+                // 상허관 마커 추가
+                markers.push(marker12);
+
+                // 13. 법학관 마커
+                var marker13 = new naver.maps.Marker({
+                    position: new naver.maps.LatLng(arrLa[12], arrLo[12]),
+                    map: myMap,
+                    icon: {
+                        url : "/image_ui/icon_Joint_2.png"
+                    },
+                });
+                // 법학관 마커 클릭
+                naver.maps.Event.addListener(marker13, "click", function() {
+                    loadDirection(latitude, longitude, arrLa[12], arrLo[12]);
+                    for (var i=0 ; i<markers.length ; i++) {
+                        markers[i].setIcon({
+                            url : "/image_ui/icon_Joint_2.png"
+                        });
+                    }
+                    marker13.setIcon({
+                        url : "/image_ui/icon_Joint_1.png"
+                    });
+                });
+                // 법학관 마커 추가
+                markers.push(marker13);
+
+                // 14. 새천년관 마커
+                var marker14 = new naver.maps.Marker({
+                    position: new naver.maps.LatLng(arrLa[13], arrLo[13]),
+                    map: myMap,
+                    icon: {
+                        url : "/image_ui/icon_Joint_2.png"
+                    },
+                });
+                // 새천년관 마커 클릭
+                naver.maps.Event.addListener(marker14, "click", function() {
+                    loadDirection(latitude, longitude, arrLa[13], arrLo[13]);
+                    for (var i=0 ; i<markers.length ; i++) {
+                        markers[i].setIcon({
+                            url : "/image_ui/icon_Joint_2.png"
+                        });
+                    }
+                    marker14.setIcon({
+                        url : "/image_ui/icon_Joint_1.png"
+                    });
+                });
+                // 새천년관 마커 추가
+                markers.push(marker14);
+
+                // 15. 체육관 마커
+                var marker15 = new naver.maps.Marker({
+                    position: new naver.maps.LatLng(arrLa[14], arrLo[14]),
+                    map: myMap,
+                    icon: {
+                        url : "/image_ui/icon_Joint_2.png"
+                    },
+                });
+                // 상허관 마커 클릭
+                naver.maps.Event.addListener(marker15, "click", function() {
+                    loadDirection(latitude, longitude, arrLa[14], arrLo[14]);
+                    for (var i=0 ; i<markers.length ; i++) {
+                        markers[i].setIcon({
+                            url : "/image_ui/icon_Joint_2.png"
+                        });
+                    }
+                    marker15.setIcon({
+                        url : "/image_ui/icon_Joint_1.png"
+                    });
+                });
+                // 상허관 마커 추가
+                markers.push(marker15);
+
+                // 실시간 위치 업데이트
+                watchID = navigator.geolocation.watchPosition(updateLocation);
+            }
+
+            // 경로 생성 함수
+            function loadDirection(fromLa, fromLo, toLa, toLo) {
+
+                // 요청 URL
+                var url = 
+                    "/naver-maps-api/map-direction/v1/driving?start="+
+                    fromLo+","+fromLa+"&goal="+toLo+","+toLa+"&option=trafast";
+
+                // 요청 헤더
+                var headers = new Headers();
+                headers.set("X-NCP-APIGW-API-KEY-ID", "kzfwh7kw4c");
+                headers.set("X-NCP-APIGW-API-KEY", "7kG78fhb682p372iIlm7I4L73aPaTYQVlPlqNzXf");
+
+                // HTTP 요청 설정
+                var requestOptions = {
+                    method: 'GET',
+                    headers: headers,
+                    redirect: 'follow'
+                };
+
+                // HTTP 요청 보내기
+                fetch(url, requestOptions)
+                    .then(response => {
+                        // response.ok가 아닌 response.status를 사용
+                        if (response.status !== 200) {
+                            throw new Error('API 오류: ' + response.status);
+                        }
+                        return response.json();
+                    })
+                    .then(result => {
+                        // API 응답(result)을 여기서 처리
+                        console.log(result);
+
+                        // 경로 좌표를 가져오기
+                        var pathArray = result.route.trafast[0].path;
+
+                        // pathArray를 사용하여 경로 좌표 배열 생성
+                        var pathCoordinates = [];
+                        for (var i = 0; i < pathArray.length; i++) {
+                            var lat = parseFloat(pathArray[i][1]); // 위도
+                            var lng = parseFloat(pathArray[i][0]); // 경도
+                            pathCoordinates.push(new naver.maps.LatLng(lat, lng));
+                        }
+
+                        // 이전 경로 지우기
+                        if (polyline) {
+                            polyline.setMap(null);
+                        }
+
+                        // 경로 Polyline을 지도에 추가
+                        polyline = new naver.maps.Polyline({
+                            path: pathCoordinates,
+                            map: myMap,
+                            strokeColor: '#4CAF50',
+                            strokeWeight: 7,
+                        });
+
+                        // 도착 확인
+                        if (checkArrival(toLa, toLo, fromLa, fromLo)) {
+                            alert("도착!");
+                        }
+                    })
+                    .catch(error => {
+                        // 오류 처리
+                        console.error('API 요청 중 오류 발생:', error);
+                    });
+            };
+
+            // Haversine 공식을 사용하여 두 지점 간의 거리를 계산
+            function calculateDistance(lat1, lon1, lat2, lon2) {
+                var R = 6371; // 지구 반지름 (단위: 킬로미터)
+                var dLat = deg2rad(lat2 - lat1);
+                var dLon = deg2rad(lon2 - lon1);
+                var a =
+                    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                    Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
+                    Math.sin(dLon / 2) * Math.sin(dLon / 2);
+                var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+                var distance = R * c;
+                return distance;
+            }
+            function deg2rad(deg) {
+                return deg * (Math.PI / 180);
+            }
+
+            // 도착 확인 함수
+            function checkArrival(fromLa, fromLo, toLa, toLo) {
+                var distance = calculateDistance(fromLa, fromLo, toLa, toLo);
+                return distance < 0.01; // 거리가 10미터 이내로 접근하면 도착으로 간주
+            };
+
+            // 페이지를 닫을 때 위치 추적 중지
+            window.onbeforeunload = function() {
+                navigator.geolocation.clearWatch(watchID);
+            };
+        };
+    </script>
 </body>
 </html>
