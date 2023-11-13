@@ -272,6 +272,7 @@
                         url : "/image_ui/icon_Bullseye.png"
                     },
                 });
+                //console.log(latitude + " | " + longitude);
             }
 
             // 지도 생성 함수, 실시간 위치 추적
@@ -310,16 +311,34 @@
                 markers.push(marker1);
                 // 경로 생성
                 start1.addEventListener("click", function() {
-                    loadDirection(latitude, longitude, arrLa[0], arrLo[0]);
-                    for (var i=0 ; i<markers.length ; i++) {
-                        markers[i].setIcon({
-                            url : "/image_ui/icon_Joint_2.png"
+                    // var latitude1 = position.coords.latitude;     // 현재 위도                
+                    // var longitude1 = position.coords.longitude;   // 현재 경도
+                    // console.log(latitude1 + " | " + longitude1 + "in giksa");
+                    navigator.geolocation.getCurrentPosition(function(pos) {
+                        var latitude1 = pos.coords.latitude;     // 현재 위도                
+                        var longitude1 = pos.coords.longitude;   // 현재 경도
+                        console.log(latitude1 + " | " + longitude1 + "in giksa");
+                        loadDirection(latitude1, longitude1, arrLa[0], arrLo[0]);
+                        for (var i=0 ; i<markers.length ; i++) {
+                            markers[i].setIcon({
+                                url : "/image_ui/icon_Joint_2.png"
+                            });
+                        }
+                        marker1.setIcon({
+                            url : "/image_ui/icon_Joint_1.png"
                         });
-                    }
-                    marker1.setIcon({
-                        url : "/image_ui/icon_Joint_1.png"
+                        closeWindow();
                     });
-                    closeWindow();
+                    // loadDirection(latitude, longitude, arrLa[0], arrLo[0]);
+                    //     for (var i=0 ; i<markers.length ; i++) {
+                    //         markers[i].setIcon({
+                    //             url : "/image_ui/icon_Joint_2.png"
+                    //         });
+                    //     }
+                    //     marker1.setIcon({
+                    //         url : "/image_ui/icon_Joint_1.png"
+                    //     });
+                    //     closeWindow();
                 });
                 // 정보창 없이기
                 close1.addEventListener("click", function() {
@@ -763,6 +782,7 @@
 
                 // 실시간 위치 업데이트
                 watchID = navigator.geolocation.watchPosition(updateLocation);
+                
             }
 
             // 경로 생성 함수
