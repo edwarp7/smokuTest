@@ -10,22 +10,144 @@
         #map {
             position: relative;
         }
-        #btn1 {
-            width: 360px;
-            height: 240px;
-            background-color: #0078FF;
-            color: #fff;
-            text-align: center;
-            line-height: 240px;
-            cursor: pointer;
-            position: absolute;
+        .infoWindow {
             display: none;
+            align-items: center;
+            justify-content: center;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50vw;
+            max-width: 300px;
+            height: 100vw;
+            max-height: 600px;
+            background-color: #f0f0f0;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            flex-direction: column;
+            align-items: center;
         }
+        .infoWindow img {
+            max-width: 100%;
+            height: auto;
+            max-height: 70%;
+            /* border-radius: 10px; */
+        }
+        .startLoadBtn {
+            margin-top: 10px;
+            cursor: pointer;
+            padding: 5px 10px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+        }
+        .closeBtn {
+            margin-top: 10px;
+            cursor: pointer;
+            padding: 5px 10px;
+            background-color: gray;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+        }      
     </style>
 </head>
 <body>
     <div id="map" style="width:100%; height:800px;">
-        <div id="btn1">마커 클릭</div>
+        <div class="infoWindow" id="window1">
+            <p class="info" id="info1">기숙사</p>
+            <img src="/image_p/p1.png">
+            <button class="startLoadBtn" id="start1">안내 시작</button>
+            <button class="closeBtn" id="close1">창닫기</button>
+        </div>
+        <div class="infoWindow" id="window2">
+            <p class="info" id="info2">기술혁신관</p>
+            <img src="/image_p/p2.png">
+            <button class="startLoadBtn" id="start2">안내 시작</button>
+            <button class="closeBtn" id="close2">창닫기</button>
+        </div>
+        <div class="infoWindow" id="window3">
+            <p class="info" id="info3">산학협동관</p>
+            <img src="/image_p/p3.png">
+            <button class="startLoadBtn" id="start3">안내 시작</button>
+            <button class="closeBtn" id="close3">창닫기</button>
+        </div>
+        <div class="infoWindow" id="window4">
+            <p class="info" id="info4">도서관</p>
+            <img src="image_p/p4.png">
+            <button class="startLoadBtn" id="start4">안내 시작</button>
+            <button class="closeBtn" id="close4">창닫기</button>
+        </div>
+        <div class="infoWindow" id="window5">
+            <p class="info" id="info5">예디대1</p>
+            <img src="image_p/p5.png">
+            <button class="startLoadBtn" id="start5">안내 시작</button>
+            <button class="closeBtn" id="close5">창닫기</button>
+        </div>
+        <div class="infoWindow" id="window6">
+            <p class="info" id="info6">문과대</p>
+            <img src="image_p/p6.jpg">
+            <button class="startLoadBtn" id="start6">안내 시작</button>
+            <button class="closeBtn" id="close6">창닫기</button>
+        </div>
+        <div class="infoWindow" id="window7">
+            <p class="info" id="info7">이과대</p>
+            <img src="image_p/p7.png">
+            <button class="startLoadBtn" id="start7">안내 시작</button>
+            <button class="closeBtn" id="close7">창닫기</button>
+        </div>
+        <div class="infoWindow" id="window8">
+            <p class="info" id="info8">황소상</p>
+            <img src="image_p/p8.jpg">
+            <button class="startLoadBtn" id="start8">안내 시작</button>
+            <button class="closeBtn" id="close8">창닫기</button>
+        </div>
+        <div class="infoWindow" id="window9">
+            <p class="info" id="info9">공학관</p>
+            <img src="image_p/p9.png">
+            <button class="startLoadBtn" id="start9">안내 시작</button>
+            <button class="closeBtn" id="close9">창닫기</button>
+        </div>
+        <div class="infoWindow" id="window10">
+            <p class="info" id="info10">신공학관</p>
+            <img src="image_p/p10.png">
+            <button class="startLoadBtn" id="start10">안내 시작</button>
+            <button class="closeBtn" id="close10">창닫기</button>
+        </div>
+        <div class="infoWindow" id="window11">
+            <p class="info" id="info11">행정관</p>
+            <img src="image_p/p11.jpg">
+            <button class="startLoadBtn" id="start11">안내 시작</button>
+            <button class="closeBtn" id="close11">창닫기</button>
+        </div>
+        <div class="infoWindow" id="window12">
+            <p class="info" id="info12">상허관</p>
+            <img src="image_p/p12.jpg">
+            <button class="startLoadBtn" id="start12">안내 시작</button>
+            <button class="closeBtn" id="close12">창닫기</button>
+        </div>
+        <div class="infoWindow" id="window13">
+            <p class="info" id="info13">법학관</p>
+            <img src="image_p/p13.jpg">
+            <button class="startLoadBtn" id="start13">안내 시작</button>
+            <button class="closeBtn" id="close13">창닫기</button>
+        </div>
+        <div class="infoWindow" id="window14">
+            <p class="info" id="info14">새천년관</p>
+            <img src="image_p/p14.jpg">
+            <button class="startLoadBtn" id="start14">안내 시작</button>
+            <button class="closeBtn" id="close14"></button>창닫기</button>
+        </div>
+        <div class="infoWindow" id="window15">
+            <p class="info" id="info15">체육관</p>
+            <img src="image_p/p15.png">
+            <button class="startLoadBtn" id="start15">안내 시작</button>
+            <button class="closeBtn" id="close15">창닫기</button>
+        </div>
     </div>
     <script>
         window.onload = function() {
@@ -46,38 +168,113 @@
             // 14. 새천년관           (37.543295, 127.077583)
             // 15. 체육관             (37.544699, 127.079416)
 
-            // 황소상까지만
+            // 흡연장 좌표 위도,경도 배열 (황소상까지만)
             var arrLa = [37.539314, 37.539734, 37.539324, 37.542006, 37.542586, 37.543091, 37.541781, 37.542749, 37.541490, 37.540503, 37.543604, 37.543822, 37.541563, 37.543295, 37.544699];
             var arrLo = [127.078426,127.077744,127.073454,127.074458,127.072790,127.078600,127.080444,127.076197,127.078981,127.079287,127.074972,127.075768,127.075599,127.077583,127.079416];
 
+            // 지도
             var myMap;
+            // 경로
             var polyline;
-
+            // 위치 추적
             var watchID;
 
-            var btn1 = document.getElementById("btn1");
+            var myMarker;
+            // 흡연장 정보창
+            var window1 = document.getElementById("window1");
+            var window2 = document.getElementById("window2");
+            var window3 = document.getElementById("window3");
+            var window4 = document.getElementById("window4");
+            var window5 = document.getElementById("window5");
+            var window6 = document.getElementById("window6");
+            var window7 = document.getElementById("window7");
+            var window8 = document.getElementById("window8");
+            var window9 = document.getElementById("window9");
+            var window10 = document.getElementById("window10");
+            var window11 = document.getElementById("window11");
+            var window12 = document.getElementById("window12");
+            var window13 = document.getElementById("window13");
+            var window14 = document.getElementById("window14");
+            var window15 = document.getElementById("window15");
+            // 경로 시작 버튼
+            var start1 = document.getElementById("start1");
+            var start2 = document.getElementById("start2");
+            var start3 = document.getElementById("start3");
+            var start4 = document.getElementById("start4");
+            var start5 = document.getElementById("start5");
+            var start6 = document.getElementById("start6");
+            var start7 = document.getElementById("start7");
+            var start8 = document.getElementById("start8");
+            var start9 = document.getElementById("start9");
+            var start10 = document.getElementById("start10");
+            var start11 = document.getElementById("start11");
+            var start12 = document.getElementById("start12");
+            var start13 = document.getElementById("start13");
+            var start14 = document.getElementById("start14");
+            var start15 = document.getElementById("start15");
+            // 창닫기 버튼
+            var close1 = document.getElementById("close1");
+            var close2 = document.getElementById("close2");
+            var close3 = document.getElementById("close3");
+            var close4 = document.getElementById("close4");
+            var close5 = document.getElementById("close5");
+            var close6 = document.getElementById("close6");
+            var close7 = document.getElementById("close7");
+            var close8 = document.getElementById("close8");
+            var close9 = document.getElementById("close9");
+            var close10 = document.getElementById("close10");
+            var close11 = document.getElementById("close11");
+            var close12 = document.getElementById("close12");
+            var close13 = document.getElementById("close13");
+            var close14 = document.getElementById("close14");
+            var close15 = document.getElementById("close15");
 
-            // 현재 위치 불러와서 지도 생성
+            // 창닫기
+            function closeWindow() {
+                window1.style.display = "none";
+                window2.style.display = "none";
+                window3.style.display = "none";
+                window4.style.display = "none";
+                window5.style.display = "none";
+                window6.style.display = "none";
+                window7.style.display = "none";
+                window8.style.display = "none";
+                window9.style.display = "none";
+                window10.style.display = "none";
+                window11.style.display = "none";
+                window12.style.display = "none";
+                window13.style.display = "none";
+                window14.style.display = "none";
+                window15.style.display = "none";
+            }
+
+            // 시작하면 한번 현재 위치 불러와서 지도 생성
             navigator.geolocation.getCurrentPosition(function(pos) {
                 var latitude = pos.coords.latitude;     // 현재 위도                
                 var longitude = pos.coords.longitude;   // 현재 경도
-                
                 loadMap(latitude, longitude);
-                //loadDirection(latitude, longitude, arrLa[0], arrLo[0]);
             });
             
             // 위치 업데이트 함수
             function updateLocation(pos) {
                 var latitude = pos.coords.latitude;
                 var longitude = pos.coords.longitude;
-                //myMap.setCenter(new naver.maps.LatLng(latitude, longitude));
-                // if (polyline) {
-                //     polyline.setMap(null);
-                // }
-                //loadDirection(latitude, longitude, markers[0].getPosition().lat(), markers[0].getPosition().lng());
+                //myMap.setCenter(new naver.maps.LatLng(latitude, longitude));    // 지도 내 위치로 고정
+
+                if(myMarker){
+                    myMarker.setMap(null);
+                }
+
+                myMarker = new naver.maps.Marker({
+                    position: new naver.maps.LatLng(latitude, longitude),
+                    map: myMap,
+                    icon: {
+                        url : "/image_ui/icon_Bullseye.png"
+                    },
+                });
             }
 
-            // 지도 생성 함수
+            // 지도 생성 함수, 실시간 위치 추적
             function loadMap(latitude, longitude) {
 
                 let markers = new Array();
@@ -89,7 +286,7 @@
                 });
 
                 // 현재 위치 마커
-                var myMarker = new naver.maps.Marker({
+                myMarker = new naver.maps.Marker({
                     position: new naver.maps.LatLng(latitude, longitude),
                     map: myMap,
                     icon: {
@@ -107,6 +304,12 @@
                 });
                 // 기숙사 마커 클릭
                 naver.maps.Event.addListener(marker1, "click", function() {
+                    window1.style.display = "flex";
+                });
+                // 기숙사 마커 추가
+                markers.push(marker1);
+                // 경로 생성
+                start1.addEventListener("click", function() {
                     loadDirection(latitude, longitude, arrLa[0], arrLo[0]);
                     for (var i=0 ; i<markers.length ; i++) {
                         markers[i].setIcon({
@@ -116,9 +319,12 @@
                     marker1.setIcon({
                         url : "/image_ui/icon_Joint_1.png"
                     });
+                    closeWindow();
                 });
-                // 기숙사 마커 추가
-                markers.push(marker1);
+                // 정보창 없이기
+                close1.addEventListener("click", function() {
+                    closeWindow();
+                });
 
                 // 2. 기술혁신관 주차장 마커
                 var marker2 = new naver.maps.Marker({
@@ -130,6 +336,12 @@
                 });
                 // 기술혁신관 마커 클릭
                 naver.maps.Event.addListener(marker2, "click", function() {
+                    window2.style.display = "flex";
+                });
+                // 기술혁신관 마커 추가
+                markers.push(marker2);
+                // 경로 생성
+                start2.addEventListener("click", function() {
                     loadDirection(latitude, longitude, arrLa[1], arrLo[1]);
                     for (var i=0 ; i<markers.length ; i++) {
                         markers[i].setIcon({
@@ -139,9 +351,12 @@
                     marker2.setIcon({
                         url : "/image_ui/icon_Joint_1.png"
                     });
+                    closeWindow();
                 });
-                // 기술혁신관 마커 추가
-                markers.push(marker2);
+                // 정보창 없이기
+                close2.addEventListener("click", function() {
+                    closeWindow();
+                });
 
                 // 3. 산학협동관 주차장 마커
                 var marker3 = new naver.maps.Marker({
@@ -153,6 +368,12 @@
                 });
                 // 산협 마커 클릭
                 naver.maps.Event.addListener(marker3, "click", function() {
+                    window3.style.display = "flex";
+                });
+                // 산협 마커 추가
+                markers.push(marker3);
+                // 경로 생성
+                start3.addEventListener("click", function() {
                     loadDirection(latitude, longitude, arrLa[2], arrLo[2]);
                     for (var i=0 ; i<markers.length ; i++) {
                         markers[i].setIcon({
@@ -162,9 +383,11 @@
                     marker3.setIcon({
                         url : "/image_ui/icon_Joint_1.png"
                     });
+                    closeWindow();
                 });
-                // 산협 마커 추가
-                markers.push(marker3);
+                close3.addEventListener("click", function() {
+                    closeWindow();
+                });
 
                 // 4. 도서관 마커
                 var marker4 = new naver.maps.Marker({
@@ -176,6 +399,12 @@
                 });
                 // 도서관 마커 클릭
                 naver.maps.Event.addListener(marker4, "click", function() {
+                    window4.style.display = "flex";
+                });
+                // 도서관 마커 추가
+                markers.push(marker4);
+                // 경로 생성
+                start4.addEventListener("click", function() {
                     loadDirection(latitude, longitude, arrLa[3], arrLo[3]);
                     for (var i=0 ; i<markers.length ; i++) {
                         markers[i].setIcon({
@@ -185,9 +414,11 @@
                     marker4.setIcon({
                         url : "/image_ui/icon_Joint_1.png"
                     });
+                    closeWindow();
                 });
-                // 도서관 마커 추가
-                markers.push(marker4);
+                close4.addEventListener("click", function() {
+                    closeWindow();
+                });
 
                 // 5. 예디대 마커
                 var marker5 = new naver.maps.Marker({
@@ -199,6 +430,12 @@
                 });
                 // 예디대 마커 클릭
                 naver.maps.Event.addListener(marker5, "click", function() {
+                    window5.style.display = "flex";
+                });
+                // 예디대 마커 추가
+                markers.push(marker5);
+                // 경로 생성
+                start5.addEventListener("click", function() {
                     loadDirection(latitude, longitude, arrLa[4], arrLo[4]);
                     for (var i=0 ; i<markers.length ; i++) {
                         markers[i].setIcon({
@@ -208,9 +445,11 @@
                     marker5.setIcon({
                         url : "/image_ui/icon_Joint_1.png"
                     });
+                    closeWindow();
                 });
-                // 예디대 마커 추가
-                markers.push(marker5);
+                close5.addEventListener("click", function() {
+                    closeWindow();
+                });
 
                 // 6. 문과대 뒤 마커
                 var marker6 = new naver.maps.Marker({
@@ -222,6 +461,12 @@
                 });
                 // 문과대 마커 클릭
                 naver.maps.Event.addListener(marker6, "click", function() {
+                    window6.style.display = "flex";
+                });
+                // 문과대 마커 추가
+                markers.push(marker6);
+                // 경로 생성
+                start6.addEventListener("click", function() {
                     loadDirection(latitude, longitude, arrLa[5], arrLo[5]);
                     for (var i=0 ; i<markers.length ; i++) {
                         markers[i].setIcon({
@@ -231,9 +476,11 @@
                     marker6.setIcon({
                         url : "/image_ui/icon_Joint_1.png"
                     });
+                    closeWindow();
                 });
-                // 문과대 마커 추가
-                markers.push(marker6);
+                close6.addEventListener("click", function() {
+                    closeWindow();
+                });
 
                 // 7. 이과관 옆 마커
                 var marker7 = new naver.maps.Marker({
@@ -245,6 +492,12 @@
                 });
                 // 이과대 마커 클릭
                 naver.maps.Event.addListener(marker7, "click", function() {
+                    window7.style.display = "flex";
+                });
+                // 이과대 마커 추가
+                markers.push(marker7);
+                // 경로 생성
+                start7.addEventListener("click", function() {
                     loadDirection(latitude, longitude, arrLa[6], arrLo[6]);
                     for (var i=0 ; i<markers.length ; i++) {
                         markers[i].setIcon({
@@ -254,9 +507,11 @@
                     marker7.setIcon({
                         url : "/image_ui/icon_Joint_1.png"
                     });
+                    closeWindow();
                 });
-                // 이과대 마커 추가
-                markers.push(marker7);
+                close7.addEventListener("click", function() {
+                    closeWindow();
+                });
 
                 // 8. 새천년관 학생회관 황소상 마커
                 var marker8 = new naver.maps.Marker({
@@ -268,6 +523,12 @@
                 });
                 // 황소상 마커 클릭
                 naver.maps.Event.addListener(marker8, "click", function() {
+                    window8.style.display = "flex";
+                });
+                // 황소상 마커 추가
+                markers.push(marker8);
+                // 경로 생성
+                start8.addEventListener("click", function() {
                     loadDirection(latitude, longitude, arrLa[7], arrLo[7]);
                     for (var i=0 ; i<markers.length ; i++) {
                         markers[i].setIcon({
@@ -277,9 +538,11 @@
                     marker8.setIcon({
                         url : "/image_ui/icon_Joint_1.png"
                     });
+                    closeWindow();
                 });
-                // 황소상 마커 추가
-                markers.push(marker8);
+                close8.addEventListener("click", function() {
+                    closeWindow();
+                });
 
                 // 9. 공학관 마커
                 var marker9 = new naver.maps.Marker({
@@ -291,6 +554,12 @@
                 });
                 // 공학관 마커 클릭
                 naver.maps.Event.addListener(marker9, "click", function() {
+                    window9.style.display = "flex";
+                });
+                // 공학관 마커 추가
+                markers.push(marker9);
+                // 경로 생성
+                start9.addEventListener("click", function() {
                     loadDirection(latitude, longitude, arrLa[8], arrLo[8]);
                     for (var i=0 ; i<markers.length ; i++) {
                         markers[i].setIcon({
@@ -300,9 +569,11 @@
                     marker9.setIcon({
                         url : "/image_ui/icon_Joint_1.png"
                     });
+                    closeWindow();
                 });
-                // 공학관 마커 추가
-                markers.push(marker9);
+                close9.addEventListener("click", function() {
+                    closeWindow();
+                });
 
                 // 10. 신공학관 마커
                 var marker10 = new naver.maps.Marker({
@@ -314,6 +585,12 @@
                 });
                 // 신공학관 마커 클릭
                 naver.maps.Event.addListener(marker10, "click", function() {
+                    window10.style.display = "flex";
+                });
+                // 신공학관 마커 추가
+                markers.push(marker10);
+                // 경로 생성
+                start10.addEventListener("click", function() {
                     loadDirection(latitude, longitude, arrLa[9], arrLo[9]);
                     for (var i=0 ; i<markers.length ; i++) {
                         markers[i].setIcon({
@@ -323,9 +600,11 @@
                     marker10.setIcon({
                         url : "/image_ui/icon_Joint_1.png"
                     });
+                    closeWindow();
                 });
-                // 신공학관 마커 추가
-                markers.push(marker10);
+                close10.addEventListener("click", function() {
+                    closeWindow();
+                });
 
                 // 11. 행정관 마커
                 var marker11 = new naver.maps.Marker({
@@ -337,6 +616,12 @@
                 });
                 // 행정관 마커 클릭
                 naver.maps.Event.addListener(marker11, "click", function() {
+                    window11.style.display = "flex";
+                });
+                // 행정관 마커 추가
+                markers.push(marker11);
+                // 경로 생성
+                start11.addEventListener("click", function() {
                     loadDirection(latitude, longitude, arrLa[10], arrLo[10]);
                     for (var i=0 ; i<markers.length ; i++) {
                         markers[i].setIcon({
@@ -346,9 +631,11 @@
                     marker11.setIcon({
                         url : "/image_ui/icon_Joint_1.png"
                     });
+                    closeWindow();
                 });
-                // 행정관 마커 추가
-                markers.push(marker11);
+                close11.addEventListener("click", function() {
+                    closeWindow();
+                });
 
                 // 12. 상허관 마커
                 var marker12 = new naver.maps.Marker({
@@ -360,6 +647,12 @@
                 });
                 // 상허관 마커 클릭
                 naver.maps.Event.addListener(marker12, "click", function() {
+                    window12.style.display = "flex";
+                });
+                // 상허관 마커 추가
+                markers.push(marker12);
+                // 경로 생성
+                start12.addEventListener("click", function() {
                     loadDirection(latitude, longitude, arrLa[11], arrLo[11]);
                     for (var i=0 ; i<markers.length ; i++) {
                         markers[i].setIcon({
@@ -369,9 +662,11 @@
                     marker12.setIcon({
                         url : "/image_ui/icon_Joint_1.png"
                     });
+                    closeWindow();
                 });
-                // 상허관 마커 추가
-                markers.push(marker12);
+                close12.addEventListener("click", function() {
+                    closeWindow();
+                });
 
                 // 13. 법학관 마커
                 var marker13 = new naver.maps.Marker({
@@ -383,6 +678,12 @@
                 });
                 // 법학관 마커 클릭
                 naver.maps.Event.addListener(marker13, "click", function() {
+                    window13.style.display = "flex";
+                });
+                // 법학관 마커 추가
+                markers.push(marker13);
+                // 경로 생성
+                start13.addEventListener("click", function() {
                     loadDirection(latitude, longitude, arrLa[12], arrLo[12]);
                     for (var i=0 ; i<markers.length ; i++) {
                         markers[i].setIcon({
@@ -392,9 +693,11 @@
                     marker13.setIcon({
                         url : "/image_ui/icon_Joint_1.png"
                     });
+                    closeWindow();
                 });
-                // 법학관 마커 추가
-                markers.push(marker13);
+                close13.addEventListener("click", function() {
+                    closeWindow();
+                });
 
                 // 14. 새천년관 마커
                 var marker14 = new naver.maps.Marker({
@@ -406,6 +709,12 @@
                 });
                 // 새천년관 마커 클릭
                 naver.maps.Event.addListener(marker14, "click", function() {
+                    window14.style.display = "flex";
+                });
+                // 새천년관 마커 추가
+                markers.push(marker14);
+                // 경로 생성
+                start14.addEventListener("click", function() {
                     loadDirection(latitude, longitude, arrLa[13], arrLo[13]);
                     for (var i=0 ; i<markers.length ; i++) {
                         markers[i].setIcon({
@@ -415,9 +724,11 @@
                     marker14.setIcon({
                         url : "/image_ui/icon_Joint_1.png"
                     });
+                    closeWindow();
                 });
-                // 새천년관 마커 추가
-                markers.push(marker14);
+                close14.addEventListener("click", function() {
+                    closeWindow();
+                });
 
                 // 15. 체육관 마커
                 var marker15 = new naver.maps.Marker({
@@ -429,6 +740,12 @@
                 });
                 // 상허관 마커 클릭
                 naver.maps.Event.addListener(marker15, "click", function() {
+                    window15.style.display = "flex";
+                });
+                // 상허관 마커 추가
+                markers.push(marker15);
+                // 경로 생성
+                start15.addEventListener("click", function() {
                     loadDirection(latitude, longitude, arrLa[14], arrLo[14]);
                     for (var i=0 ; i<markers.length ; i++) {
                         markers[i].setIcon({
@@ -438,9 +755,11 @@
                     marker15.setIcon({
                         url : "/image_ui/icon_Joint_1.png"
                     });
+                    closeWindow();
                 });
-                // 상허관 마커 추가
-                markers.push(marker15);
+                close15.addEventListener("click", function() {
+                    closeWindow();
+                });
 
                 // 실시간 위치 업데이트
                 watchID = navigator.geolocation.watchPosition(updateLocation);
