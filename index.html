@@ -61,6 +61,7 @@
             navigator.geolocation.getCurrentPosition(function(pos) {
                 var latitude = pos.coords.latitude;     // 현재 위도                
                 var longitude = pos.coords.longitude;   // 현재 경도
+                
                 loadMap(latitude, longitude);
                 //loadDirection(latitude, longitude, arrLa[0], arrLo[0]);
             });
@@ -69,7 +70,7 @@
             function updateLocation(pos) {
                 var latitude = pos.coords.latitude;
                 var longitude = pos.coords.longitude;
-                myMap.setCenter(new naver.maps.LatLng(latitude, longitude));
+                //myMap.setCenter(new naver.maps.LatLng(latitude, longitude));
                 // if (polyline) {
                 //     polyline.setMap(null);
                 // }
