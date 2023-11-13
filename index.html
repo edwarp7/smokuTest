@@ -361,16 +361,21 @@
                 markers.push(marker2);
                 // 경로 생성
                 start2.addEventListener("click", function() {
-                    loadDirection(latitude, longitude, arrLa[1], arrLo[1]);
-                    for (var i=0 ; i<markers.length ; i++) {
-                        markers[i].setIcon({
-                            url : "/image_ui/icon_Joint_2.png"
+                    navigator.geolocation.getCurrentPosition(function(pos) {
+                        var latitude2 = pos.coords.latitude;     // 현재 위도                
+                        var longitude2 = pos.coords.longitude;   // 현재 경도
+                        loadDirection(latitude2, longitude2, arrLa[1], arrLo[1]);
+                        for (var i=0 ; i<markers.length ; i++) {
+                            markers[i].setIcon({
+                                url : "/image_ui/icon_Joint_2.png"
+                            });
+                        }
+                        marker2.setIcon({
+                            url : "/image_ui/icon_Joint_1.png"
                         });
-                    }
-                    marker2.setIcon({
-                        url : "/image_ui/icon_Joint_1.png"
+                        closeWindow();
                     });
-                    closeWindow();
+                    
                 });
                 // 정보창 없이기
                 close2.addEventListener("click", function() {
@@ -393,16 +398,20 @@
                 markers.push(marker3);
                 // 경로 생성
                 start3.addEventListener("click", function() {
-                    loadDirection(latitude, longitude, arrLa[2], arrLo[2]);
-                    for (var i=0 ; i<markers.length ; i++) {
-                        markers[i].setIcon({
-                            url : "/image_ui/icon_Joint_2.png"
+                    navigator.geolocation.getCurrentPosition(function(pos) {
+                        var latitude3 = pos.coords.latitude;     // 현재 위도                
+                        var longitude3 = pos.coords.longitude;   // 현재 경도
+                        loadDirection(latitude3, longitude3, arrLa[2], arrLo[2]);
+                        for (var i=0 ; i<markers.length ; i++) {
+                            markers[i].setIcon({
+                                url : "/image_ui/icon_Joint_2.png"
+                            });
+                        }
+                        marker2.setIcon({
+                            url : "/image_ui/icon_Joint_1.png"
                         });
-                    }
-                    marker3.setIcon({
-                        url : "/image_ui/icon_Joint_1.png"
+                        closeWindow();
                     });
-                    closeWindow();
                 });
                 close3.addEventListener("click", function() {
                     closeWindow();
