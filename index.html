@@ -433,16 +433,20 @@
                 markers.push(marker4);
                 // 경로 생성
                 start4.addEventListener("click", function() {
-                    loadDirection(latitude, longitude, arrLa[3], arrLo[3]);
-                    for (var i=0 ; i<markers.length ; i++) {
-                        markers[i].setIcon({
-                            url : "/image_ui/icon_Joint_2.png"
+                    navigator.geolocation.getCurrentPosition(function(pos) {
+                        var latitude3 = pos.coords.latitude;     // 현재 위도                
+                        var longitude3 = pos.coords.longitude;   // 현재 경도
+                        loadDirection(latitude3, longitude3, arrLa[3], arrLo[3]);
+                        for (var i=0 ; i<markers.length ; i++) {
+                            markers[i].setIcon({
+                                url : "/image_ui/icon_Joint_2.png"
+                            });
+                        }
+                        marker2.setIcon({
+                            url : "/image_ui/icon_Joint_1.png"
                         });
-                    }
-                    marker4.setIcon({
-                        url : "/image_ui/icon_Joint_1.png"
+                        closeWindow();
                     });
-                    closeWindow();
                 });
                 close4.addEventListener("click", function() {
                     closeWindow();
@@ -464,16 +468,20 @@
                 markers.push(marker5);
                 // 경로 생성
                 start5.addEventListener("click", function() {
-                    loadDirection(latitude, longitude, arrLa[4], arrLo[4]);
-                    for (var i=0 ; i<markers.length ; i++) {
-                        markers[i].setIcon({
-                            url : "/image_ui/icon_Joint_2.png"
+                    navigator.geolocation.getCurrentPosition(function(pos) {
+                        var latitude3 = pos.coords.latitude;     // 현재 위도                
+                        var longitude3 = pos.coords.longitude;   // 현재 경도
+                        loadDirection(latitude3, longitude3, arrLa[4], arrLo[4]);
+                        for (var i=0 ; i<markers.length ; i++) {
+                            markers[i].setIcon({
+                                url : "/image_ui/icon_Joint_2.png"
+                            });
+                        }
+                        marker2.setIcon({
+                            url : "/image_ui/icon_Joint_1.png"
                         });
-                    }
-                    marker5.setIcon({
-                        url : "/image_ui/icon_Joint_1.png"
+                        closeWindow();
                     });
-                    closeWindow();
                 });
                 close5.addEventListener("click", function() {
                     closeWindow();
@@ -495,16 +503,20 @@
                 markers.push(marker6);
                 // 경로 생성
                 start6.addEventListener("click", function() {
-                    loadDirection(latitude, longitude, arrLa[5], arrLo[5]);
-                    for (var i=0 ; i<markers.length ; i++) {
-                        markers[i].setIcon({
-                            url : "/image_ui/icon_Joint_2.png"
+                    navigator.geolocation.getCurrentPosition(function(pos) {
+                        var latitude3 = pos.coords.latitude;     // 현재 위도                
+                        var longitude3 = pos.coords.longitude;   // 현재 경도
+                        loadDirection(latitude3, longitude3, arrLa[5], arrLo[5]);
+                        for (var i=0 ; i<markers.length ; i++) {
+                            markers[i].setIcon({
+                                url : "/image_ui/icon_Joint_2.png"
+                            });
+                        }
+                        marker2.setIcon({
+                            url : "/image_ui/icon_Joint_1.png"
                         });
-                    }
-                    marker6.setIcon({
-                        url : "/image_ui/icon_Joint_1.png"
+                        closeWindow();
                     });
-                    closeWindow();
                 });
                 close6.addEventListener("click", function() {
                     closeWindow();
@@ -526,16 +538,20 @@
                 markers.push(marker7);
                 // 경로 생성
                 start7.addEventListener("click", function() {
-                    loadDirection(latitude, longitude, arrLa[6], arrLo[6]);
-                    for (var i=0 ; i<markers.length ; i++) {
-                        markers[i].setIcon({
-                            url : "/image_ui/icon_Joint_2.png"
+                    navigator.geolocation.getCurrentPosition(function(pos) {
+                        var latitude3 = pos.coords.latitude;     // 현재 위도                
+                        var longitude3 = pos.coords.longitude;   // 현재 경도
+                        loadDirection(latitude3, longitude3, arrLa[6], arrLo[6]);
+                        for (var i=0 ; i<markers.length ; i++) {
+                            markers[i].setIcon({
+                                url : "/image_ui/icon_Joint_2.png"
+                            });
+                        }
+                        marker2.setIcon({
+                            url : "/image_ui/icon_Joint_1.png"
                         });
-                    }
-                    marker7.setIcon({
-                        url : "/image_ui/icon_Joint_1.png"
+                        closeWindow();
                     });
-                    closeWindow();
                 });
                 close7.addEventListener("click", function() {
                     closeWindow();
@@ -557,16 +573,20 @@
                 markers.push(marker8);
                 // 경로 생성
                 start8.addEventListener("click", function() {
-                    loadDirection(latitude, longitude, arrLa[7], arrLo[7]);
-                    for (var i=0 ; i<markers.length ; i++) {
-                        markers[i].setIcon({
-                            url : "/image_ui/icon_Joint_2.png"
+                    navigator.geolocation.getCurrentPosition(function(pos) {
+                        var latitude3 = pos.coords.latitude;     // 현재 위도                
+                        var longitude3 = pos.coords.longitude;   // 현재 경도
+                        loadDirection(latitude3, longitude3, arrLa[7], arrLo[7]);
+                        for (var i=0 ; i<markers.length ; i++) {
+                            markers[i].setIcon({
+                                url : "/image_ui/icon_Joint_2.png"
+                            });
+                        }
+                        marker2.setIcon({
+                            url : "/image_ui/icon_Joint_1.png"
                         });
-                    }
-                    marker8.setIcon({
-                        url : "/image_ui/icon_Joint_1.png"
+                        closeWindow();
                     });
-                    closeWindow();
                 });
                 close8.addEventListener("click", function() {
                     closeWindow();
@@ -588,16 +608,20 @@
                 markers.push(marker9);
                 // 경로 생성
                 start9.addEventListener("click", function() {
-                    loadDirection(latitude, longitude, arrLa[8], arrLo[8]);
-                    for (var i=0 ; i<markers.length ; i++) {
-                        markers[i].setIcon({
-                            url : "/image_ui/icon_Joint_2.png"
+                    navigator.geolocation.getCurrentPosition(function(pos) {
+                        var latitude3 = pos.coords.latitude;     // 현재 위도                
+                        var longitude3 = pos.coords.longitude;   // 현재 경도
+                        loadDirection(latitude3, longitude3, arrLa[8], arrLo[8]);
+                        for (var i=0 ; i<markers.length ; i++) {
+                            markers[i].setIcon({
+                                url : "/image_ui/icon_Joint_2.png"
+                            });
+                        }
+                        marker2.setIcon({
+                            url : "/image_ui/icon_Joint_1.png"
                         });
-                    }
-                    marker9.setIcon({
-                        url : "/image_ui/icon_Joint_1.png"
+                        closeWindow();
                     });
-                    closeWindow();
                 });
                 close9.addEventListener("click", function() {
                     closeWindow();
@@ -619,16 +643,20 @@
                 markers.push(marker10);
                 // 경로 생성
                 start10.addEventListener("click", function() {
-                    loadDirection(latitude, longitude, arrLa[9], arrLo[9]);
-                    for (var i=0 ; i<markers.length ; i++) {
-                        markers[i].setIcon({
-                            url : "/image_ui/icon_Joint_2.png"
+                    navigator.geolocation.getCurrentPosition(function(pos) {
+                        var latitude3 = pos.coords.latitude;     // 현재 위도                
+                        var longitude3 = pos.coords.longitude;   // 현재 경도
+                        loadDirection(latitude3, longitude3, arrLa[9], arrLo[9]);
+                        for (var i=0 ; i<markers.length ; i++) {
+                            markers[i].setIcon({
+                                url : "/image_ui/icon_Joint_2.png"
+                            });
+                        }
+                        marker2.setIcon({
+                            url : "/image_ui/icon_Joint_1.png"
                         });
-                    }
-                    marker10.setIcon({
-                        url : "/image_ui/icon_Joint_1.png"
+                        closeWindow();
                     });
-                    closeWindow();
                 });
                 close10.addEventListener("click", function() {
                     closeWindow();
@@ -650,16 +678,20 @@
                 markers.push(marker11);
                 // 경로 생성
                 start11.addEventListener("click", function() {
-                    loadDirection(latitude, longitude, arrLa[10], arrLo[10]);
-                    for (var i=0 ; i<markers.length ; i++) {
-                        markers[i].setIcon({
-                            url : "/image_ui/icon_Joint_2.png"
+                    navigator.geolocation.getCurrentPosition(function(pos) {
+                        var latitude3 = pos.coords.latitude;     // 현재 위도                
+                        var longitude3 = pos.coords.longitude;   // 현재 경도
+                        loadDirection(latitude3, longitude3, arrLa[10], arrLo[10]);
+                        for (var i=0 ; i<markers.length ; i++) {
+                            markers[i].setIcon({
+                                url : "/image_ui/icon_Joint_2.png"
+                            });
+                        }
+                        marker2.setIcon({
+                            url : "/image_ui/icon_Joint_1.png"
                         });
-                    }
-                    marker11.setIcon({
-                        url : "/image_ui/icon_Joint_1.png"
+                        closeWindow();
                     });
-                    closeWindow();
                 });
                 close11.addEventListener("click", function() {
                     closeWindow();
@@ -681,16 +713,20 @@
                 markers.push(marker12);
                 // 경로 생성
                 start12.addEventListener("click", function() {
-                    loadDirection(latitude, longitude, arrLa[11], arrLo[11]);
-                    for (var i=0 ; i<markers.length ; i++) {
-                        markers[i].setIcon({
-                            url : "/image_ui/icon_Joint_2.png"
+                    navigator.geolocation.getCurrentPosition(function(pos) {
+                        var latitude3 = pos.coords.latitude;     // 현재 위도                
+                        var longitude3 = pos.coords.longitude;   // 현재 경도
+                        loadDirection(latitude3, longitude3, arrLa[11], arrLo[11]);
+                        for (var i=0 ; i<markers.length ; i++) {
+                            markers[i].setIcon({
+                                url : "/image_ui/icon_Joint_2.png"
+                            });
+                        }
+                        marker2.setIcon({
+                            url : "/image_ui/icon_Joint_1.png"
                         });
-                    }
-                    marker12.setIcon({
-                        url : "/image_ui/icon_Joint_1.png"
+                        closeWindow();
                     });
-                    closeWindow();
                 });
                 close12.addEventListener("click", function() {
                     closeWindow();
@@ -712,16 +748,20 @@
                 markers.push(marker13);
                 // 경로 생성
                 start13.addEventListener("click", function() {
-                    loadDirection(latitude, longitude, arrLa[12], arrLo[12]);
-                    for (var i=0 ; i<markers.length ; i++) {
-                        markers[i].setIcon({
-                            url : "/image_ui/icon_Joint_2.png"
+                    navigator.geolocation.getCurrentPosition(function(pos) {
+                        var latitude3 = pos.coords.latitude;     // 현재 위도                
+                        var longitude3 = pos.coords.longitude;   // 현재 경도
+                        loadDirection(latitude3, longitude3, arrLa[12], arrLo[12]);
+                        for (var i=0 ; i<markers.length ; i++) {
+                            markers[i].setIcon({
+                                url : "/image_ui/icon_Joint_2.png"
+                            });
+                        }
+                        marker2.setIcon({
+                            url : "/image_ui/icon_Joint_1.png"
                         });
-                    }
-                    marker13.setIcon({
-                        url : "/image_ui/icon_Joint_1.png"
+                        closeWindow();
                     });
-                    closeWindow();
                 });
                 close13.addEventListener("click", function() {
                     closeWindow();
@@ -743,16 +783,20 @@
                 markers.push(marker14);
                 // 경로 생성
                 start14.addEventListener("click", function() {
-                    loadDirection(latitude, longitude, arrLa[13], arrLo[13]);
-                    for (var i=0 ; i<markers.length ; i++) {
-                        markers[i].setIcon({
-                            url : "/image_ui/icon_Joint_2.png"
+                    navigator.geolocation.getCurrentPosition(function(pos) {
+                        var latitude3 = pos.coords.latitude;     // 현재 위도                
+                        var longitude3 = pos.coords.longitude;   // 현재 경도
+                        loadDirection(latitude3, longitude3, arrLa[13], arrLo[13]);
+                        for (var i=0 ; i<markers.length ; i++) {
+                            markers[i].setIcon({
+                                url : "/image_ui/icon_Joint_2.png"
+                            });
+                        }
+                        marker2.setIcon({
+                            url : "/image_ui/icon_Joint_1.png"
                         });
-                    }
-                    marker14.setIcon({
-                        url : "/image_ui/icon_Joint_1.png"
+                        closeWindow();
                     });
-                    closeWindow();
                 });
                 close14.addEventListener("click", function() {
                     closeWindow();
@@ -774,16 +818,20 @@
                 markers.push(marker15);
                 // 경로 생성
                 start15.addEventListener("click", function() {
-                    loadDirection(latitude, longitude, arrLa[14], arrLo[14]);
-                    for (var i=0 ; i<markers.length ; i++) {
-                        markers[i].setIcon({
-                            url : "/image_ui/icon_Joint_2.png"
+                    navigator.geolocation.getCurrentPosition(function(pos) {
+                        var latitude3 = pos.coords.latitude;     // 현재 위도                
+                        var longitude3 = pos.coords.longitude;   // 현재 경도
+                        loadDirection(latitude3, longitude3, arrLa[14], arrLo[14]);
+                        for (var i=0 ; i<markers.length ; i++) {
+                            markers[i].setIcon({
+                                url : "/image_ui/icon_Joint_2.png"
+                            });
+                        }
+                        marker2.setIcon({
+                            url : "/image_ui/icon_Joint_1.png"
                         });
-                    }
-                    marker15.setIcon({
-                        url : "/image_ui/icon_Joint_1.png"
+                        closeWindow();
                     });
-                    closeWindow();
                 });
                 close15.addEventListener("click", function() {
                     closeWindow();
