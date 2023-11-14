@@ -905,8 +905,11 @@
                         // }
 
                         var isarrive = navigator.geolocation.watchPosition(
-                            function(){
-                                if(checkArrival(toLa, toLo, fromLa, fromLo)){
+                            function(pos){
+                                var currentlati = pos.coords.latitude;
+                                var currentlong = pos.coords.longitude;
+                                alert(currentlati + ", " + currentlong);
+                                if(checkArrival(currentlati, currentlong, fromLa, fromLo)){
                                     alert("도착했습니다.");
                                     navigator.geolocation.clearWatch(isarrive);
                                     if (polyline) {
@@ -947,10 +950,10 @@
                 var distance = calculateDistance(fromLa, fromLo, toLa, toLo);
                 //alert("거리 : "+distance);
                 if(distance < 0.01){
-                    alert("도착?");
+                    //alert("도착?");
                     return true;
                 }else{
-                    alert("도착안함");
+                    //alert("도착안함");
                     return false;
                 }
                 //return distance < 0.01; // 거리가 10미터 이내로 접근하면 도착으로 간주
