@@ -229,6 +229,9 @@
             var close14 = document.getElementById("close14");
             var close15 = document.getElementById("close15");
 
+            var myLatitude;
+            var myLongtitude;
+
             // 창닫기
             function closeWindow() {
                 window1.style.display = "none";
@@ -257,8 +260,9 @@
             
             // 위치 업데이트 함수
             function updateLocation(pos) {
-                var latitude = pos.coords.latitude;
-                var longitude = pos.coords.longitude;
+                myLatitude = pos.coords.latitude;
+                myLongitude = pos.coords.longitude;
+                
                 //myMap.setCenter(new naver.maps.LatLng(latitude, longitude));    // 지도 내 위치로 고정
 
                 if(myMarker){
@@ -266,13 +270,13 @@
                 }
 
                 myMarker = new naver.maps.Marker({
-                    position: new naver.maps.LatLng(latitude, longitude),
+                    position: new naver.maps.LatLng(myLatitude, myLongitude),
                     map: myMap,
                     icon: {
                         url : "/image_ui/icon_Bullseye.png"
                     },
                 });
-                //console.log(latitude + " | " + longitude);
+                console.log(myLatitude + " | " + myLongitude);
             }
 
             // 지도 생성 함수, 실시간 위치 추적
@@ -908,7 +912,7 @@
                             function(pos){
                                 var currentlati = pos.coords.latitude;
                                 var currentlong = pos.coords.longitude;
-                                alert(currentlati + ", " + currentlong);
+                                //alert(currentlati + ", " + currentlong);
                                 if(checkArrival(currentlati, currentlong, toLa, toLo)){
                                     alert("도착했습니다.");
                                     navigator.geolocation.clearWatch(isarrive);
