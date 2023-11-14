@@ -260,8 +260,8 @@
             
             // 위치 업데이트 함수
             function updateLocation(pos) {
-                myLatitude = pos.coords.latitude;
-                myLongitude = pos.coords.longitude;
+                var latitude = pos.coords.latitude;
+                var longitude = pos.coords.longitude;
                 
                 //myMap.setCenter(new naver.maps.LatLng(latitude, longitude));    // 지도 내 위치로 고정
 
@@ -270,7 +270,7 @@
                 }
 
                 myMarker = new naver.maps.Marker({
-                    position: new naver.maps.LatLng(myLatitude, myLongitude),
+                    position: new naver.maps.LatLng(latitude, longitude),
                     map: myMap,
                     icon: {
                         url : "/image_ui/icon_Bullseye.png"
