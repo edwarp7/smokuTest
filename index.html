@@ -909,7 +909,7 @@
                                 var currentlati = pos.coords.latitude;
                                 var currentlong = pos.coords.longitude;
                                 alert(currentlati + ", " + currentlong);
-                                if(checkArrival(currentlati, currentlong, fromLa, fromLo)){
+                                if(checkArrival(currentlati, currentlong, toLa, toLo)){
                                     alert("도착했습니다.");
                                     navigator.geolocation.clearWatch(isarrive);
                                     if (polyline) {
