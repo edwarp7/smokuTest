@@ -904,12 +904,13 @@
                         //     alert("도착!");
                         // }
 
-                        navigator.geolocation.watchPosition(
+                        var isarrive = navigator.geolocation.watchPosition(
                             function(){
-                                checkArrival(toLa, toLo, fromLa, fromLo)
-                                
+                                if(checkArrival(toLa, toLo, fromLa, fromLo)){
+                                    alert("도착했습니다.");
+                                    navigator.geolocation.clearWatch(isarrive);
+                                }
                             }
-                            
                         );
 
                     })
