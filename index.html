@@ -946,7 +946,14 @@
             function checkArrival(fromLa, fromLo, toLa, toLo) {
                 var distance = calculateDistance(fromLa, fromLo, toLa, toLo);
                 //alert("거리 : "+distance);
-                return distance < 0.01; // 거리가 10미터 이내로 접근하면 도착으로 간주
+                if(distance < 0.01){
+                    alert("도착?");
+                    return true;
+                }else{
+                    alert("도착안함");
+                    return false;
+                }
+                //return distance < 0.01; // 거리가 10미터 이내로 접근하면 도착으로 간주
             };
 
             // 페이지를 닫을 때 위치 추적 중지
